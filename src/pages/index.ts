@@ -1,10 +1,13 @@
 import Splash from './Splash'
 import Login from './Login'
-import { RegisterMain, RegisterCard } from './Register'
+import Register from './Register'
+import Timeline from './Timeline'
+import Write from './Write'
 
 export default {
     Splash,
     Login,
-    RegisterMain,
-    RegisterCard
+    Register,
+    Timeline,
+    Write
 }

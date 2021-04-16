@@ -2,7 +2,8 @@ import React from 'react'
 import {
     View,
     StyleSheet,
-    Text
+    Text,
+    Alert
 } from 'react-native'
 import AccountInput from '../../components/AccountInput'
 import useInputs from '../../hook/useInputs'
@@ -10,8 +11,13 @@ import withLoading from '../../hoc/withLoading'
 import AccountButton from '../../components/AccountButton'
 import { globalStyle } from '../../constants/style'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useNavigation } from '@react-navigation/native'
+import { userAuth } from '../../api/users'
+import { setItemToAsync } from '../../utils/AsyncStorage'
 
 const Login = () => {
+
+    const navigation = useNavigation()
 
     const [ { username, password }, onChange ] = useInputs({
         username: "",
@@ -19,7 +25,19 @@ const Login = () => {
     })
 
     const onPressLogin = () => {
-
+        userAuth({username: username, password: password})
+        .then(res => {
+            setItemToAsync("token", res.data["token"])
+            .then(token => {
+                navigation.reset({
+                    index: 0,
+                    routes: [{name: "Timeline"}]
+                })
+            })
+        })
+        .catch(err => {
+            Alert.alert(err.code!)
+        })
     }
 
     return(

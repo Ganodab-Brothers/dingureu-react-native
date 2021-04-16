@@ -8,6 +8,7 @@ import withLoading from '../../hoc/withLoading'
 import { baseColor, globalStyle } from '../../constants/style'
 import AccountButton from '../../components/AccountButton'
 import { useNavigation } from '@react-navigation/native'
+import { getItemFromAsync } from '../../utils/AsyncStorage'
 
 const Splash = () => {
 
@@ -20,11 +21,27 @@ const Splash = () => {
     }
 
     const onPressRegister = () => {
-        navigation.navigate("RegisterMain")
+        navigation.navigate("Register")
     }
 
     useEffect(() => {
-        setTimeout(() => setSplash(false), 2000)
+        setTimeout(() => {
+            getItemFromAsync("token")
+            .then(token => {
+                console.log(token)
+                if(token){
+                    navigation.reset({
+                        index: 0,
+                        routes: [{name: "Timeline"}]
+                    })
+                } else {
+                    setSplash(false)
+                }
+            })
+            .catch(err => {
+                setSplash(false)
+            })
+        }, 2000)
     }, [])
 
     return(

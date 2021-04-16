@@ -26,12 +26,16 @@ const Router = () => {
                     component={Route.Login}
                 />
                 <Screen
-                    name="RegisterMain"
-                    component={Route.RegisterMain}
+                    name="Register"
+                    component={Route.Register}
                 />
                 <Screen
-                    name="RegisterCard"
-                    component={Route.RegisterCard}
+                    name="Timeline"
+                    component={Route.Timeline}
+                />
+                <Screen
+                    name="Write"
+                    component={Route.Write}
                 />
             </Navigator>
         </NavigationContainer>
