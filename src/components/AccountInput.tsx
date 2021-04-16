@@ -28,6 +28,7 @@ const AccountInput: React.FC<Props> = ({
             style={styles.textinput}
             secureTextEntry={type==="password" ? true : false}
             placeholderTextColor="#979797"
+            autoCapitalize="none"
         />
     )
 }
