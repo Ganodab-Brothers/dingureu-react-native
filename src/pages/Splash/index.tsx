@@ -21,7 +21,7 @@ const Splash = () => {
     }
 
     const onPressRegister = () => {
-        navigation.navigate("Register")
+        navigation.navigate("RegisterMain")
     }
 
     useEffect(() => {
@@ -56,7 +56,7 @@ const Splash = () => {
                 <View style={styles.buttonWrapper}>
                     <AccountButton
                         text="로그인"
-                        isActive={false}
+                        isActive
                         onPress={onPressLogin}
                     />
                     <AccountButton

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { api } from '../api'
+import { api } from '../api/common'
 import Loading from '../components/Loading'
 
 const withLoading = <P extends object>(WrappedComponent: React.ComponentType<P>) => {

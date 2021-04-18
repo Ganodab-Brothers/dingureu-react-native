@@ -8,10 +8,13 @@
 
 import React from 'react';
 import Router from './Router';
+import { RecoilRoot } from 'recoil';
 
 const App = () => {
   	return (
-    	<Router/>
+		<RecoilRoot>
+			<Router/>
+		</RecoilRoot>
   	);
 };
 
