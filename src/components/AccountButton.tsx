@@ -1,6 +1,5 @@
 import React from 'react'
 import { 
-    View,
     Text,
     StyleSheet,
     TouchableOpacity
@@ -10,20 +9,26 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 
 interface Props {
     text: string,
-    onPress: () => void
+    onPress?: () => void
     isActive: boolean
+    width?: string
+    isToggle?: boolean
 }
 
 const AccountButton: React.FC<Props> = ({
     text,
     onPress,
-    isActive
+    isActive,
+    width,
+    isToggle
 }) => {
     return(
-        <TouchableOpacity onPress={onPress}>
-            <View style={isActive ? {...styles.container, ...styles.containerActive} : styles.container}>
-                <Text style={isActive ? {...styles.text, ...styles.textActive} : styles.text}>{text}</Text>
-            </View>
+        <TouchableOpacity 
+            style={isActive ? [styles.container, styles.containerActive, width ? { width: width } : {}] : [styles.container, width ? { width: width } : {}]} 
+            disabled={isToggle ? false : !isActive} 
+            onPress={onPress}
+        >
+            <Text style={isActive ? {...styles.text, ...styles.textActive} : styles.text}>{text}</Text>
         </TouchableOpacity>
     )
 }
@@ -32,9 +37,9 @@ export default AccountButton
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#C4C4C4",
         borderRadius: 30,
-        borderColor: "#b2b2b2",
+        borderColor: "#C4C4C4",
         borderWidth: .5,
         width: (wp("100%") - 100),
         marginBottom: 20,
@@ -46,12 +51,11 @@ const styles = StyleSheet.create({
         backgroundColor: baseColor,
     },
     text: {
-        color: "#000000",
+        color: "#ffffff",
         fontSize: 18,
         paddingVertical: 16
     },
     textActive: {
-        color: "#ffffff",
         fontWeight: "bold"
     }
 })

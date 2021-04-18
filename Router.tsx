@@ -26,8 +26,16 @@ const Router = () => {
                     component={Route.Login}
                 />
                 <Screen
-                    name="Register"
-                    component={Route.Register}
+                    name="RegisterMain"
+                    component={Route.Register.Main}
+                />
+                <Screen
+                    name="RegisterSearchSchool"
+                    component={Route.Register.SearchSchool}
+                />
+                <Screen
+                    name="RegisterCard"
+                    component={Route.Register.Card}
                 />
                 <Screen
                     name="Timeline"

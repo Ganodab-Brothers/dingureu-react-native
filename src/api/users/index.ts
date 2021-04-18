@@ -1,4 +1,4 @@
-import { api } from "..";
+import { api } from "../common";
 import { UserAuth, UserRegister } from "../../types/users";
 
 export const userAuth = (D: UserAuth) => {

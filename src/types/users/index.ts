@@ -1,10 +1,15 @@
+enum UserGender {
+    MALE = "m",
+    FEMALE = "f"
+}
+
 interface UserAuth {
     username: string
     password: string
 }
 
 interface UserRegister {
-    gender: "m" | "f"
+    gender: UserGender
     name: string
     nickname: string
     password: string
@@ -17,5 +22,9 @@ interface UserRegister {
 
 export type {
     UserAuth,
-    UserRegister
+    UserRegister,
 };
+
+export {
+    UserGender
+}
