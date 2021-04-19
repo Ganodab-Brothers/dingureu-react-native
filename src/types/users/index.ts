@@ -3,7 +3,7 @@ enum UserGender {
     FEMALE = "f"
 }
 
-interface UserAuth {
+interface UserToken {
     username: string
     password: string
 }
@@ -21,7 +21,7 @@ interface UserRegister {
 }
 
 export type {
-    UserAuth,
+    UserToken,
     UserRegister,
 };
 

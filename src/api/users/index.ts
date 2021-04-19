@@ -1,7 +1,7 @@
 import { api } from "../common";
-import { UserAuth, UserRegister } from "../../types/users";
+import { UserToken, UserRegister } from "../../types/users";
 
-export const userAuth = (D: UserAuth) => {
+export const userToken = (D: UserToken) => {
     return api.post('/user/token', D)
 }
 

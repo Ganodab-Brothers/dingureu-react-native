@@ -177,22 +177,27 @@ const Timeline = () => {
                         disableVirtualization={false}
                     />
                 </View>
-                <View style={styles.contentWrapper}></View>
+                <View style={styles.contentWrapper}>
+                    <FlatList
+                        data={dummy}
+                        renderItem={TimelineItem}
+                        disableVirtualization={false}
+                    />
+                </View>
             </Swiper>
             <View style={styles.rightAligned}>
-                <TouchableOpacity
+                {/*<TouchableOpacity
                     onPress={onPressLogout}
                     style={styles.writeButtonWrapper}
                 >
                     <Text style={styles.writeButtonText}>로그아웃</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>*/}
                 <TouchableOpacity
                     onPress={onPressWrite}
                     style={styles.writeButtonWrapper}
                 >
                     <Text style={styles.writeButtonText}>이야기 쓰기</Text>
                 </TouchableOpacity>
-                
             </View>
         </View>
     )
@@ -234,7 +239,6 @@ const styles = StyleSheet.create({
     writeButtonText: {
         color: "#ffffff",
         fontSize: 16,
-        fontWeight: "bold",
-        
+        fontWeight: "bold"
     }
 })

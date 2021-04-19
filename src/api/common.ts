@@ -1,7 +1,7 @@
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage'
 
-export const baseURL = "https://staging-api.dingureu.com"
+export const baseURL = "https://staging-api.dingureu.com/apis"
 
 export const api = axios.create({
     baseURL: baseURL

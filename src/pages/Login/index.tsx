@@ -12,7 +12,7 @@ import AccountButton from '../../components/AccountButton'
 import { globalStyle } from '../../constants/style'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { useNavigation } from '@react-navigation/native'
-import { userAuth } from '../../api/users'
+import { userToken } from '../../api/users'
 import { setItemToAsync } from '../../utils/AsyncStorage'
 
 const Login = () => {
@@ -25,7 +25,10 @@ const Login = () => {
     })
 
     const onPressLogin = () => {
-        userAuth({username: username, password: password})
+        userToken({
+            username: username, 
+            password: password
+        })
         .then(res => {
             setItemToAsync("token", res.data["token"])
             .then(token => {
