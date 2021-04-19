@@ -28,7 +28,6 @@ const Splash = () => {
         setTimeout(() => {
             getItemFromAsync("token")
             .then(token => {
-                console.log(token)
                 if(token){
                     navigation.reset({
                         index: 0,
