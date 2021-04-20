@@ -7,17 +7,29 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "set:env:debug": "node ./set-env.js --env debug",
+    "set:env:staging": "node ./set-env.js --env staging",
+    "set:env:release": "node ./set-env.js --env release",
+    "run:android:debug": "yarn set:env:debug && yarn android --variant debug",
+    "run:android:staging": "yarn set:env:staging && yarn android --variant staging",
+    "run:android:release": "yarn set:env:release && yarn android --variant release",
+    "run:ios:debug": "yarn set:env:debug && yarn ios --configuration Debug",
+    "run:ios:staging": "yarn set:env:staging && yarn ios --configuration Staging",
+    "run:ios:release": "yarn set:env:release && yarn ios --configuration Release"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-firebase/app": "^11.3.1",
+    "@react-native-firebase/crashlytics": "^11.3.1",
     "@react-navigation/bottom-tabs": "^5.11.9",
     "@react-navigation/drawer": "^5.12.5",
     "@react-navigation/material-top-tabs": "^5.3.15",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
     "axios": "^0.21.1",
+    "ios-deploy": "^1.11.4",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-gesture-handler": "^1.10.3",
@@ -29,7 +41,8 @@
     "react-native-screens": "^3.0.0",
     "react-native-swiper": "^1.6.0",
     "react-native-tab-view": "^2.16.0",
-    "recoil": "^0.2.0"
+    "recoil": "^0.2.0",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",
