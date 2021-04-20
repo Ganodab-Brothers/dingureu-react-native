@@ -60,3 +60,7 @@ buck-out/
 
 #config
 /src/config/
+
+#firebase
+/android/app/google-services.json
+/ios/GoogleService-info.plist

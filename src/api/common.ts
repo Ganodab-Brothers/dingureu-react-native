@@ -1,10 +1,9 @@
 import axios from 'axios'
 import AsyncStorage from '@react-native-community/async-storage'
-
-export const baseURL = "https://staging-api.dingureu.com/apis"
+import { env } from '../config/env'
 
 export const api = axios.create({
-    baseURL: baseURL
+    baseURL: env.baseUrl
 })
 
 export const getToken = async () => {

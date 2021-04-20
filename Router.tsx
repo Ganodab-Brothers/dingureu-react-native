@@ -43,7 +43,7 @@ const Router = () => {
                 />
                 <Screen
                     name="Write"
-                    component={Routes.Write}
+                    component={Routes.WriteStory}
                 />
             </Navigator>
         </NavigationContainer>

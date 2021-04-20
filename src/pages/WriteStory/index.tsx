@@ -11,7 +11,7 @@ import useInputs from '../../hook/useInputs'
 import { baseColor } from '../../constants/style'
 import { useNavigation } from '@react-navigation/native'
 
-const Write = () => {
+const WriteStory = () => {
 
     const navigation = useNavigation()
 
@@ -25,7 +25,7 @@ const Write = () => {
                 title="이야기 쓰기" 
                 rightText="완료" 
                 rightTextColor="#227903"
-                leftText="back"
+                leftIcon
                 onPressLeft={() => navigation.goBack()}
             />
             <View style={styles.write}>
@@ -45,7 +45,7 @@ const Write = () => {
     )
 }
 
-export default Write
+export default WriteStory
 
 const styles = StyleSheet.create({
     container: {
