@@ -1,0 +1,11 @@
+//
+//  Staging.xcconfig
+//  dingureuReactNative
+//
+//  Created by 양원준 on 2021/04/20.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APP_DISPLAY_NAME = "dingureuReactNative Staging"

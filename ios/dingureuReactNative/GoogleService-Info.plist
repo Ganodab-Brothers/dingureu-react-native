@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>50847726142-g4bh5m699jvh3og1kn5jlnde1gmcmbn9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.50847726142-g4bh5m699jvh3og1kn5jlnde1gmcmbn9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCPWmr5QzkX7JlThLolfOzf4WLows18pQk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>50847726142</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.dingureureactnative</string>
+	<key>PROJECT_ID</key>
+	<string>dingureu</string>
+	<key>STORAGE_BUCKET</key>
+	<string>dingureu.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:50847726142:ios:6694375ef6320e44736f6f</string>
+</dict>
+</plist>
