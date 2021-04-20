@@ -24,7 +24,7 @@
     "bundle:ios:debug": "npx react-native bundle --entry-file index.js --platform ios --dev true --bundle-output ios/main.jsbundle --assets-dest ios",
     "bundle:ios:release": "npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "build:ios:debug": "yarn bundle:ios:debug && cd ios && xcodebuild ARCHS=arm64 ONLY_ACTIVE_ARCHS=NO -workspace dingureuReactNative.xcworkspace -scheme dingureuReactNative -configuration Debug -skip-testing dingureuReactNative",
-    "build:ios:release": "yarn bundle:ios:debug && cd ios && xcodebuild ARCHS=arm64 ONLY_ACTIVE_ARCHS=NO -workspace dingureuReactNative.xcworkspace -scheme dingureuReactNative -configuration Release -skip-testing dingureuReactNative"
+    "build:ios:release": "yarn bundle:ios:release && cd ios && xcodebuild ARCHS=arm64 ONLY_ACTIVE_ARCHS=NO -workspace dingureuReactNative.xcworkspace -scheme dingureuReactNative -configuration Release -skip-testing dingureuReactNative"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
