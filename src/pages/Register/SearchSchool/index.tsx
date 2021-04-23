@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { 
     View,
     StyleSheet,
-    ScrollView
+    ScrollView,
+    Text
 } from 'react-native'
 import AccountInput from '../../../components/AccountInput'
 import useInputs from '../../../hook/useInputs'
@@ -22,35 +23,41 @@ const SearchSchool = () => {
 
     const [ registerAtom, setRegisterAtom ] = useRecoilState(RegisterAtom)
 
-    const [ { schoolName, schoolCode }, onChange ] = useInputs({
+    const [ { schoolName, schoolCode, schoolLocation }, onChange ] = useInputs({
         schoolName: "",
-        schoolCode: ""
+        schoolCode: "",
+        schoolLocation: ""
     })
 
     const [ schoolList, setSchoolList ] = useState<SchoolData[]>([])
+    const [ empty, setEmpty ] = useState<boolean>(true)
 
     const onPressNext = () => {
         setRegisterAtom({
             ...registerAtom,
             schoolName: schoolName,
-            schoolCode: schoolCode
+            schoolCode: schoolCode,
+            schoolLocation: schoolLocation
         })
         navigation.navigate("RegisterCard")
     }
 
-    const onPressSchoolItem = (id: string, schoolName: string) => {
+    const onPressSchoolItem = (id: string, schoolName: string, schoolLocation: string) => {
         onChange("schoolCode", id)
         onChange("schoolName", schoolName)
+        onChange("schoolAddress", schoolLocation)
     }
 
     useEffect(() => {
         if(schoolName){
             searchSchool(schoolName)
             .then(res => {
+                setEmpty(false)
                 setSchoolList(res.data.schoolInfo[1].row)
             })
             .catch(err => {
-                console.log(err)
+                setEmpty(true)
+                setSchoolList([])
             })
         }
     }, [schoolName])
@@ -69,10 +76,11 @@ const SearchSchool = () => {
                 placeholder="학교명 입력"
             />
             <ScrollView contentContainerStyle={styles.schoolListWrapper}>
+                {empty && <Text style={styles.emptyText}>검색 결과가 없습니다.</Text>}
                 {schoolList.map((el: SchoolData, i: number) => (
                     <SchoolItem
                         key={i}
-                        onPress={() => onPressSchoolItem(el.SD_SCHUL_CODE, el.SCHUL_NM)}
+                        onPress={() => onPressSchoolItem(el.SD_SCHUL_CODE, el.SCHUL_NM, el.ORG_RDNMA)}
                         schoolName={el.SCHUL_NM}
                         area={el.ORG_RDNMA}
                     />
@@ -81,7 +89,7 @@ const SearchSchool = () => {
             <View style={styles.buttonWrapper}>
                 <AccountButton
                     text="다음" 
-                    isActive={schoolCode ? true : false}
+                    isActive={(schoolCode && schoolLocation) ? true : false}
                     onPress={onPressNext}
                 />
             </View>
@@ -107,5 +115,11 @@ const styles = StyleSheet.create({
         display: "flex",
         overflow: "hidden",
         paddingBottom: 150
+    },
+    emptyText: {
+        width: "100%",
+        textAlign: "center",
+        fontSize: 18,
+        color: "#BABABA"
     }
 })

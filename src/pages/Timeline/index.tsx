@@ -186,12 +186,12 @@ const Timeline = () => {
                 </View>
             </Swiper>
             <View style={styles.rightAligned}>
-                {/*<TouchableOpacity
+                <TouchableOpacity
                     onPress={onPressLogout}
                     style={styles.writeButtonWrapper}
                 >
                     <Text style={styles.writeButtonText}>로그아웃</Text>
-                </TouchableOpacity>*/}
+                </TouchableOpacity>
                 <TouchableOpacity
                     onPress={onPressWrite}
                     style={styles.writeButtonWrapper}

@@ -12,5 +12,6 @@ export const RegisterAtom = atom({
         password: "" as string,
         schoolName: "" as string,
         schoolCode: "" as string,
+        schoolLocation: "" as string
     }
 })

@@ -30,13 +30,17 @@ const Login = () => {
             password: password
         })
         .then(res => {
-            setItemToAsync("token", res.data["token"])
-            .then(token => {
-                navigation.reset({
-                    index: 0,
-                    routes: [{name: "Timeline"}]
+            if(res.data["token"]){
+                setItemToAsync("token", res.data["token"])
+                .then(token => {
+                    navigation.reset({
+                        index: 0,
+                        routes: [{name: "Timeline"}]
+                    })
                 })
-            })
+            } else {
+                Alert.alert("다시 시도해 주세요")
+            }
         })
         .catch(err => {
             Alert.alert(err.code!)
