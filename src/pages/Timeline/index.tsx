@@ -15,6 +15,7 @@ import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsi
 import Swiper from 'react-native-swiper'
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-community/async-storage'
+import { articleLocal, articleSchool } from '../../api/articles'
 
 const dummy = [
     {
@@ -157,6 +158,13 @@ const Timeline = () => {
     useEffect(() => {
         swiperRef.current?.scrollTo(toggleIndex)
     }, [toggleIndex])
+
+    useEffect(() => {
+        articleLocal()
+        .then(res => {
+            console.log(res.data)
+        })
+    }, [])
 
     return (
         <View style={styles.container}>

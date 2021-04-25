@@ -12,7 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		A6A994EF262E60B900542560 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6A994EE262E60B900542560 /* GoogleService-Info.plist */; };
+		A6EEE65E2635005000127CE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A6EEE65D2635005000127CE1 /* GoogleService-Info.plist */; };
 		C801A2F4DF8734F1D6E68305 /* libPods-dingureuReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8DF1CF0089E5CF5EFFEBF4C /* libPods-dingureuReactNative.a */; };
 		CB743684D843625CA1DA5820 /* libPods-dingureuReactNative-dingureuReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 564878F958509ABBFD924B44 /* libPods-dingureuReactNative-dingureuReactNativeTests.a */; };
 /* End PBXBuildFile section */
@@ -46,7 +46,7 @@
 		A6A994E6262E58C800542560 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		A6A994E7262E58DA00542560 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		A6A994E8262E58E600542560 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
-		A6A994EE262E60B900542560 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A6EEE65D2635005000127CE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A8DF1CF0089E5CF5EFFEBF4C /* libPods-dingureuReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dingureuReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -98,7 +98,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
-				A6A994EE262E60B900542560 /* GoogleService-Info.plist */,
+				A6EEE65D2635005000127CE1 /* GoogleService-Info.plist */,
 			);
 			name = dingureuReactNative;
 			sourceTree = "<group>";
@@ -288,7 +288,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				A6A994EF262E60B900542560 /* GoogleService-Info.plist in Resources */,
+				A6EEE65E2635005000127CE1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,8 +574,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CH922696RL;
+				DEVELOPMENT_TEAM = 5DWM6U68RK;
 				ENABLE_BITCODE = NO;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "$(ARCHS_STANDARD)";
 				INFOPLIST_FILE = dingureuReactNative/Info.plist;
@@ -588,8 +590,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dingureuReactNative;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gb.dingureuReactNative;
 				PRODUCT_NAME = dingureuReactNative;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -602,8 +605,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CH922696RL;
+				DEVELOPMENT_TEAM = 5DWM6U68RK;
 				"EXCLUDED_ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				INFOPLIST_FILE = dingureuReactNative/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -616,8 +621,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.dingureuReactNative;
+				PRODUCT_BUNDLE_IDENTIFIER = com.gb.dingureuReactNative;
 				PRODUCT_NAME = dingureuReactNative;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

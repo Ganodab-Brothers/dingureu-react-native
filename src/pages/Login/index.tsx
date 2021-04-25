@@ -43,7 +43,8 @@ const Login = () => {
             }
         })
         .catch(err => {
-            Alert.alert(err.code!)
+            Alert.alert("다시 시도해 주세요")
+            console.log(err)
         })
     }
 
