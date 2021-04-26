@@ -4,7 +4,8 @@ import {
     StyleSheet,
     Text,
     TextInput,
-    Alert
+    Alert,
+    TouchableOpacity
 } from 'react-native'
 import Header from '../../components/Header'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
@@ -13,6 +14,8 @@ import { baseColor } from '../../constants/style'
 import { useNavigation } from '@react-navigation/native'
 import RBSheet from 'react-native-raw-bottom-sheet'
 import { createArticleLocal, createArticleschool } from '../../api/articles'
+import { useRecoilValue } from 'recoil'
+import { userInfoAtom } from '../../store'
 
 const WriteStory = () => {
 
@@ -22,6 +25,8 @@ const WriteStory = () => {
         title: "",
         content: ""
     })
+
+    const userInfo = useRecoilValue(userInfoAtom)
 
     const rbSheetRef = useRef<RBSheet>(null)
 
@@ -88,8 +93,22 @@ const WriteStory = () => {
                 ref={rbSheetRef}
                 closeOnDragDown={true}
                 closeOnPressMask={true}
+                height={200}
             >
-                <Text style={{fontSize: 123}}>etxt</Text>
+                <View style={styles.sheetWrapper}>
+                    <TouchableOpacity
+                        style={styles.sheetTouchableContentWrapper}
+                        onPress={() => onPressWriteStory(true)}
+                    >
+                        <Text style={styles.sheetTouchableContent}>용산구</Text> 
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.sheetTouchableContentWrapper}
+                        onPress={() => onPressWriteStory(false)}
+                    >
+                        <Text style={styles.sheetTouchableContent}>선린인터넷고등학교</Text>
+                    </TouchableOpacity>
+                </View>
             </RBSheet>
         </View>
     )
@@ -118,5 +137,38 @@ const styles = StyleSheet.create({
     titleInput: {
         width: "100%",
         fontSize: 18
+    },
+    sheetWrapper: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        fontSize: 20,
+        height: "100%"
+    },
+    sheetTouchableContentWrapper: {
+        height: "40%"
+    },
+    sheetTouchableContent: {
+        width: "100%",
+        color: "#000000",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        fontSize: 22,
+        textAlign: "left",
+        paddingLeft: 30,
+        paddingTop: 15,
+    },
+    sheetTouchableContentActive: {
+        width: "100%",
+        color: "#ffffff",
+        height: "100%",
+        display: "flex",
+        alignItems: "center",
+        fontSize: 22,
+        textAlign: "left",
+        marginLeft: 30,
+        paddingTop: 15,
+        backgroundColor: baseColor
     }
 })

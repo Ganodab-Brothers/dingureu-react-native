@@ -28,7 +28,6 @@ api.interceptors.request.use(
 
 api.interceptors.response.use(
     async res => {
-
         return res
     },
     async error => {
@@ -40,7 +39,7 @@ api.interceptors.response.use(
                 refresh: refreshToken
             })
             .then(res => {
-                setItemToAsync("access", res.data["refresh"])
+                setItemToAsync("access", res.data["access"])
                 return api(originalRequest)
             })
         }

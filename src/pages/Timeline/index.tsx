@@ -6,7 +6,8 @@ import {
     StatusBar,
     Text,
     TouchableHighlight,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native'
 import { baseColor } from '../../constants/style'
 import TimelineHeader from '../../components/TimelineHeader'
@@ -19,6 +20,8 @@ import { articleLocal, articleSchool } from '../../api/articles'
 import { userMe } from '../../api/users'
 import { useSetRecoilState, useRecoilState } from 'recoil'
 import { userInfoAtom, timelineIndexAtom } from '../../store'
+import camelcaseKeys from 'camelcase-keys'
+import { removeItemFromAsync } from '../../utils/AsyncStorage'
 
 const dummy = [
     {
@@ -136,30 +139,32 @@ const Timeline = () => {
 
     const setUserInfo = useSetRecoilState(userInfoAtom)
 
-    const [ toggleIndex, setToggleIndex ] = useState(timelineIndex)
-
     const swiperRef = useRef<Swiper>(null)
 
     const onPressWrite = () => {
         navigation.navigate("Write")
     }
 
-    const onPressLogout = () => {
-        AsyncStorage.removeItem("token")
-        .then(res => {
+    const onPressLogout = async () => {
+        try {
+            await removeItemFromAsync("access")
+            await removeItemFromAsync("refresh")
             navigation.reset({
                 index: 0,
                 routes: [{name: "Splash"}]
             })
-        })
+        } catch(e) {
+            console.log(e)
+            Alert.alert("로그아웃에 실패하였습니다. 다시 시도해 주세요")
+        }
     }
 
     const onPressToggle = (index: number) => {
-        setToggleIndex(index)
+        setTimelineIndex(index)
     }
 
     const onIndexChanged = (index: number) => {
-        setToggleIndex(index)
+        setTimelineIndex(index)
     }
 
     useFocusEffect(() => {
@@ -167,15 +172,15 @@ const Timeline = () => {
     })
 
     useEffect(() => {
-        swiperRef.current?.scrollTo(toggleIndex)
-        setTimelineIndex(toggleIndex)
-    }, [toggleIndex])
+        swiperRef.current?.scrollTo(timelineIndex)
+        setTimelineIndex(timelineIndex)
+    }, [timelineIndex])
 
     useEffect(() => {
 
         userMe()
         .then(res => {
-            setUserInfo(res.data)
+            setUserInfo(camelcaseKeys(res.data))
         })
         .catch(err => {
             console.log(err)
@@ -194,7 +199,7 @@ const Timeline = () => {
     return (
         <View style={styles.container}>
             <StatusBar translucent hidden/>
-            <TimelineHeader toggleIndex={toggleIndex} setToggleIndex={setToggleIndex}/>
+            <TimelineHeader timelineIndex={timelineIndex} setTimelineIndex={setTimelineIndex}/>
             <Swiper
                 showsButtons={false}
                 onIndexChanged={onIndexChanged}
