@@ -13,12 +13,12 @@ import TimelineHeader from '../../components/TimelineHeader'
 import TimelineItem from '../../components/TimelineItem'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import Swiper from 'react-native-swiper'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import AsyncStorage from '@react-native-community/async-storage'
 import { articleLocal, articleSchool } from '../../api/articles'
 import { userMe } from '../../api/users'
-import { useSetRecoilState } from 'recoil'
-import { userInfoAtom } from '../../store'
+import { useSetRecoilState, useRecoilState } from 'recoil'
+import { userInfoAtom, isLocalTimelineAtom } from '../../store'
 
 const dummy = [
     {
@@ -136,6 +136,8 @@ const Timeline = () => {
 
     const setUserInfo = useSetRecoilState(userInfoAtom)
 
+    const [ isLocalTimeline, setIsLocalTimeline ] = useRecoilState(isLocalTimelineAtom)
+
     const swiperRef = useRef<Swiper>(null)
 
     const onPressWrite = () => {
@@ -160,8 +162,14 @@ const Timeline = () => {
         setToggleIndex(index)
     }
 
+    useFocusEffect(() => {
+        isLocalTimeline ? () => setToggleIndex(0) : () => setToggleIndex(1)
+    })
+
     useEffect(() => {
         swiperRef.current?.scrollTo(toggleIndex)
+        setIsLocalTimeline(!toggleIndex ? true : false)
+        console.log(toggleIndex)
     }, [toggleIndex])
 
     useEffect(() => {
@@ -181,7 +189,7 @@ const Timeline = () => {
         .catch(err => {
             console.log(err)
         })
-        
+
     }, [])
 
     return (

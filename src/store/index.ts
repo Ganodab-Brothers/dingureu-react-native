@@ -1,8 +1,8 @@
 import { atom } from 'recoil'
 import { UserGender, User } from '../types/users'
 
-export const RegisterAtom = atom({
-    key: "RegisterAtom",
+export const registerDataAtom = atom({
+    key: "registerData",
     default: {
         birthday: "" as string,
         gender: UserGender.MALE as UserGender,
@@ -29,4 +29,9 @@ export const userInfoAtom = atom({
         gender: UserGender.MALE,
         birthday: ""
     } as User
+})
+
+export const isLocalTimelineAtom = atom({
+    key: "isLocalTimeline",
+    default: true
 })

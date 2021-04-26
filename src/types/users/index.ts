@@ -18,6 +18,9 @@ interface UserRegister {
     school_name: string
     birthday: string
     student_id?: string
+    phone_number?: string
+    location: string
+    school_id_card_url: string
 }
 
 interface User {

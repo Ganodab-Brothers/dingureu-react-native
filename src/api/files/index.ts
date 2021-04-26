@@ -16,6 +16,7 @@ export const fileUpload = ({
         object_name: fileName
     })
     .then(res => {
+        console.log(res)
         for (const [key, value] of Object.entries(res.data.fields)){
             data.append(key, value)
         }
@@ -26,5 +27,8 @@ export const fileUpload = ({
         .catch(err => {
             onFailure(err)
         })
+    })
+    .catch(err => {
+        console.log(err)
     })
 }

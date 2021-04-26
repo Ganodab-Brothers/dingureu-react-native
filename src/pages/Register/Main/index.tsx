@@ -12,13 +12,13 @@ import useInputs from '../../../hook/useInputs'
 import { UserGender } from '../../../types/users'
 import { useNavigation } from '@react-navigation/native'
 import { useRecoilState } from 'recoil'
-import { RegisterAtom } from '../../../store'
+import { registerDataAtom } from '../../../store'
 
 const Register = () => {
 
     const navigation = useNavigation()
 
-    const [ registerAtom, setRegisterAtom ] = useRecoilState(RegisterAtom)
+    const [ registerData, setRegisterData ] = useRecoilState(registerDataAtom)
 
     const [ { birthday, gender, name, username, nickname, password }, onChange ] = useInputs({
         birthday: "",
@@ -30,8 +30,8 @@ const Register = () => {
     })
 
     const onPressNext = () => {
-        setRegisterAtom({
-            ...registerAtom,
+        setRegisterData({
+            ...registerData,
             birthday: birthday,
             gender: gender,
             name: name,

@@ -15,13 +15,13 @@ import { SchoolData } from '../../../types/utils'
 import SchoolItem from '../../../components/SchoolItem'
 import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen'
 import { useRecoilState } from 'recoil'
-import { RegisterAtom } from '../../../store'
+import { registerDataAtom } from '../../../store'
 
 const SearchSchool = () => {
 
     const navigation = useNavigation()
 
-    const [ registerAtom, setRegisterAtom ] = useRecoilState(RegisterAtom)
+    const [ registerData, setRegisterData ] = useRecoilState(registerDataAtom)
 
     const [ { schoolName, schoolCode, schoolLocation }, onChange ] = useInputs({
         schoolName: "",
@@ -33,8 +33,8 @@ const SearchSchool = () => {
     const [ empty, setEmpty ] = useState<boolean>(true)
 
     const onPressNext = () => {
-        setRegisterAtom({
-            ...registerAtom,
+        setRegisterData({
+            ...registerData,
             schoolName: schoolName,
             schoolCode: schoolCode,
             schoolLocation: schoolLocation
@@ -45,7 +45,7 @@ const SearchSchool = () => {
     const onPressSchoolItem = (id: string, schoolName: string, schoolLocation: string) => {
         onChange("schoolCode", id)
         onChange("schoolName", schoolName)
-        onChange("schoolAddress", schoolLocation)
+        onChange("schoolLocation", schoolLocation)
     }
 
     useEffect(() => {

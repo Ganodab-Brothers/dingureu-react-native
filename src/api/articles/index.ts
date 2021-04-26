@@ -18,7 +18,7 @@ export const updateArticleLocal = ({
 } : {
     id: string, data: UpdateArticleLocal
 }) => {
-    return api.post(`/articles/local/${id}/`, data)
+    return api.put(`/articles/local/${id}/`, data)
 }
 
 export const partialUpdateArticleLocal = ({
@@ -62,7 +62,7 @@ export const updateArticleschool = ({
 } : {
     id: string, data: UpdateArticleSchool
 }) => {
-    return api.post(`/articles/school/${id}/`, data)
+    return api.put(`/articles/school/${id}/`, data)
 }
 
 export const partialUpdateArticleSchool = ({

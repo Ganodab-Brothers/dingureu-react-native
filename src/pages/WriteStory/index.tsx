@@ -3,7 +3,8 @@ import {
     View,
     StyleSheet,
     Text,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native'
 import Header from '../../components/Header'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
@@ -11,19 +12,53 @@ import useInputs from '../../hook/useInputs'
 import { baseColor } from '../../constants/style'
 import { useNavigation } from '@react-navigation/native'
 import RBSheet from 'react-native-raw-bottom-sheet'
+import { createArticleLocal, createArticleschool } from '../../api/articles'
 
 const WriteStory = () => {
 
     const navigation = useNavigation()
 
-    const [ { title }, onChange ] = useInputs({
-        title: ""
+    const [ { title, content }, onChange ] = useInputs({
+        title: "",
+        content: ""
     })
 
     const rbSheetRef = useRef<RBSheet>(null)
 
-    const onPressWriteStory = () => {
+    const onPressSheetOn = () => {
         rbSheetRef.current!.open()
+    }
+
+    const onPressWriteStory = (isLocal: boolean) => {
+        isLocal ? (
+            createArticleLocal({
+                data: {
+                    title: title,
+                    content: content
+                }
+            })
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+                Alert.alert("글 등록에 실패했습니다. 다시 시도해 주세요")
+            })
+        ) : (
+            createArticleschool({
+                data: {
+                    title: title,
+                    content: content
+                }
+            })
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+                Alert.alert("글 등록에 실패했습니다. 다시 시도해 주세요")
+            })
+        )
     }
 
     return(
@@ -31,7 +66,7 @@ const WriteStory = () => {
             <Header 
                 title="이야기 쓰기" 
                 rightText="완료" 
-                onPressRight={onPressWriteStory}
+                onPressRight={onPressSheetOn}
                 rightTextColor="#227903"
                 leftIcon
                 onPressLeft={() => navigation.goBack()}

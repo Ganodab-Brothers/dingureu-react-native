@@ -1,6 +1,6 @@
-import { ImagePickerResponse, launchCamera, CameraOptions, launchImageLibrary } from "react-native-image-picker"
+import { ImagePickerResponse, launchCamera, CameraOptions } from "react-native-image-picker"
 
-const ImagePicker = ({
+const LaunchCamera = ({
     options,
     onSuccess,
     onFailure
@@ -9,7 +9,7 @@ const ImagePicker = ({
     onSuccess: (res: ImagePickerResponse) => void,
     onFailure: (res: ImagePickerResponse) => void
 }) => {
-    launchImageLibrary(options, (res) => {
+    launchCamera(options, (res) => {
         if(res.errorMessage){
             onFailure(res)
         } else {
@@ -18,4 +18,4 @@ const ImagePicker = ({
     })
 }
 
-export default ImagePicker
+export default launchCamera
