@@ -16,6 +16,9 @@ import Swiper from 'react-native-swiper'
 import { useNavigation } from '@react-navigation/native'
 import AsyncStorage from '@react-native-community/async-storage'
 import { articleLocal, articleSchool } from '../../api/articles'
+import { userMe } from '../../api/users'
+import { useSetRecoilState } from 'recoil'
+import { userInfoAtom } from '../../store'
 
 const dummy = [
     {
@@ -131,6 +134,8 @@ const Timeline = () => {
 
     const [ toggleIndex, setToggleIndex ] = useState(0)
 
+    const setUserInfo = useSetRecoilState(userInfoAtom)
+
     const swiperRef = useRef<Swiper>(null)
 
     const onPressWrite = () => {
@@ -160,10 +165,23 @@ const Timeline = () => {
     }, [toggleIndex])
 
     useEffect(() => {
+
+        userMe()
+        .then(res => {
+            setUserInfo(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
         articleLocal()
         .then(res => {
             console.log(res.data)
         })
+        .catch(err => {
+            console.log(err)
+        })
+        
     }, [])
 
     return (

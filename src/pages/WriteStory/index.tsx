@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { 
     View,
     StyleSheet,
@@ -10,6 +10,7 @@ import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
 import useInputs from '../../hook/useInputs'
 import { baseColor } from '../../constants/style'
 import { useNavigation } from '@react-navigation/native'
+import RBSheet from 'react-native-raw-bottom-sheet'
 
 const WriteStory = () => {
 
@@ -19,11 +20,18 @@ const WriteStory = () => {
         title: ""
     })
 
+    const rbSheetRef = useRef<RBSheet>(null)
+
+    const onPressWriteStory = () => {
+        rbSheetRef.current!.open()
+    }
+
     return(
         <View style={styles.container}>
             <Header 
                 title="이야기 쓰기" 
                 rightText="완료" 
+                onPressRight={onPressWriteStory}
                 rightTextColor="#227903"
                 leftIcon
                 onPressLeft={() => navigation.goBack()}
@@ -41,6 +49,13 @@ const WriteStory = () => {
             <View style={styles.write}>
                 <Text style={styles.writeLabel}>이야기</Text>
             </View>
+            <RBSheet
+                ref={rbSheetRef}
+                closeOnDragDown={true}
+                closeOnPressMask={true}
+            >
+                <Text style={{fontSize: 123}}>etxt</Text>
+            </RBSheet>
         </View>
     )
 }

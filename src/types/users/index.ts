@@ -20,9 +20,22 @@ interface UserRegister {
     student_id?: string
 }
 
+interface User {
+    username: string
+    nickname: string
+    phone_number?: string
+    gender?: UserGender
+    birthday?: string
+    student_id?: string
+    school_code: string
+    school_name: string
+    school?: string
+}
+
 export type {
     UserToken,
     UserRegister,
+    User
 };
 
 export {

@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import { UserGender } from '../types/users'
+import { UserGender, User } from '../types/users'
 
 export const RegisterAtom = atom({
     key: "RegisterAtom",
@@ -14,4 +14,19 @@ export const RegisterAtom = atom({
         schoolCode: "" as string,
         schoolLocation: "" as string
     }
+})
+
+export const userInfoAtom = atom({
+    key: "userInfo",
+    default: {
+        username: "",
+        nickname: "",
+        school_code: "",
+        school_name: "",
+        school: "",
+        student_id: "",
+        phone_number: "",
+        gender: UserGender.MALE,
+        birthday: ""
+    } as User
 })

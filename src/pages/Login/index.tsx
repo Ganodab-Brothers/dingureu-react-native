@@ -26,8 +26,10 @@ const Login = () => {
 
     const onPressLogin = () => {
         userToken({
-            username: username, 
-            password: password
+            data: {
+                username: username, 
+                password: password
+            }
         })
         .then(res => {
             if(res.data["token"]){
@@ -44,7 +46,6 @@ const Login = () => {
         })
         .catch(err => {
             Alert.alert("다시 시도해 주세요")
-            console.log(err)
         })
     }
 
