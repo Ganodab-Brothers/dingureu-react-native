@@ -25,10 +25,11 @@ const Splash = () => {
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            getItemFromAsync("token")
-            .then(token => {
-                if(token){
+        setTimeout(async () => {
+            try {
+                const accessToken = await getItemFromAsync("access")
+                const refreshToken = await getItemFromAsync("refresh")
+                if(accessToken && refreshToken){
                     navigation.reset({
                         index: 0,
                         routes: [{name: "Timeline"}]
@@ -36,10 +37,9 @@ const Splash = () => {
                 } else {
                     setSplash(false)
                 }
-            })
-            .catch(err => {
+            } catch(e) {
                 setSplash(false)
-            })
+            }
         }, 2000)
     }, [])
 

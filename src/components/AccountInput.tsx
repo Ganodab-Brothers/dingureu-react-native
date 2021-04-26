@@ -11,6 +11,8 @@ interface Props {
     placeholder?: string
     type?: string
     name: string
+    maxLength?: number
+    onBlur?: () => void
 }
 
 const AccountInput: React.FC<Props> = ({
@@ -18,10 +20,14 @@ const AccountInput: React.FC<Props> = ({
     onChange,
     placeholder,
     type,
-    name
+    name,
+    maxLength,
+    onBlur
 }) => {
     return(
         <TextInput
+            onBlur={onBlur}
+            maxLength={maxLength ? maxLength : 50}
             value={value}
             onChangeText={(text) => onChange(name, text)}
             placeholder={placeholder}

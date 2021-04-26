@@ -32,12 +32,15 @@ const Login = () => {
             }
         })
         .then(res => {
-            if(res.data["token"]){
-                setItemToAsync("token", res.data["token"])
-                .then(token => {
-                    navigation.reset({
-                        index: 0,
-                        routes: [{name: "Timeline"}]
+            if(res.data["access"]){
+                setItemToAsync("access", res.data["access"])
+                .then(access => {
+                    setItemToAsync("refresh", res.data["refresh"])
+                    .then(refresh => {
+                        navigation.reset({
+                            index: 0,
+                            routes: [{name: "Timeline"}]
+                        })
                     })
                 })
             } else {

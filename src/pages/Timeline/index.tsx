@@ -18,7 +18,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { articleLocal, articleSchool } from '../../api/articles'
 import { userMe } from '../../api/users'
 import { useSetRecoilState, useRecoilState } from 'recoil'
-import { userInfoAtom, isLocalTimelineAtom } from '../../store'
+import { userInfoAtom, timelineIndexAtom } from '../../store'
 
 const dummy = [
     {
@@ -132,11 +132,11 @@ const Timeline = () => {
 
     const navigation = useNavigation()
 
-    const [ toggleIndex, setToggleIndex ] = useState(0)
+    const [ timelineIndex, setTimelineIndex ] = useRecoilState(timelineIndexAtom)
 
     const setUserInfo = useSetRecoilState(userInfoAtom)
 
-    const [ isLocalTimeline, setIsLocalTimeline ] = useRecoilState(isLocalTimelineAtom)
+    const [ toggleIndex, setToggleIndex ] = useState(timelineIndex)
 
     const swiperRef = useRef<Swiper>(null)
 
@@ -163,13 +163,12 @@ const Timeline = () => {
     }
 
     useFocusEffect(() => {
-        isLocalTimeline ? () => setToggleIndex(0) : () => setToggleIndex(1)
+        
     })
 
     useEffect(() => {
         swiperRef.current?.scrollTo(toggleIndex)
-        setIsLocalTimeline(!toggleIndex ? true : false)
-        console.log(toggleIndex)
+        setTimelineIndex(toggleIndex)
     }, [toggleIndex])
 
     useEffect(() => {

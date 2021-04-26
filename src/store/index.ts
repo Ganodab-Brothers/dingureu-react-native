@@ -31,7 +31,7 @@ export const userInfoAtom = atom({
     } as User
 })
 
-export const isLocalTimelineAtom = atom({
-    key: "isLocalTimeline",
-    default: true
+export const timelineIndexAtom = atom({
+    key: "timelineIndex",
+    default: 0
 })
