@@ -13,8 +13,12 @@ import TimelineHeader from '../../components/TimelineHeader'
 import TimelineItem from '../../components/TimelineItem'
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen'
 import Swiper from 'react-native-swiper'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import AsyncStorage from '@react-native-community/async-storage'
+import { articleLocal, articleSchool } from '../../api/articles'
+import { userMe } from '../../api/users'
+import { useSetRecoilState, useRecoilState } from 'recoil'
+import { userInfoAtom, timelineIndexAtom } from '../../store'
 
 const dummy = [
     {
@@ -128,7 +132,11 @@ const Timeline = () => {
 
     const navigation = useNavigation()
 
-    const [ toggleIndex, setToggleIndex ] = useState(0)
+    const [ timelineIndex, setTimelineIndex ] = useRecoilState(timelineIndexAtom)
+
+    const setUserInfo = useSetRecoilState(userInfoAtom)
+
+    const [ toggleIndex, setToggleIndex ] = useState(timelineIndex)
 
     const swiperRef = useRef<Swiper>(null)
 
@@ -154,9 +162,34 @@ const Timeline = () => {
         setToggleIndex(index)
     }
 
+    useFocusEffect(() => {
+        
+    })
+
     useEffect(() => {
         swiperRef.current?.scrollTo(toggleIndex)
+        setTimelineIndex(toggleIndex)
     }, [toggleIndex])
+
+    useEffect(() => {
+
+        userMe()
+        .then(res => {
+            setUserInfo(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+        articleLocal()
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -186,12 +219,12 @@ const Timeline = () => {
                 </View>
             </Swiper>
             <View style={styles.rightAligned}>
-                {/*<TouchableOpacity
+                <TouchableOpacity
                     onPress={onPressLogout}
                     style={styles.writeButtonWrapper}
                 >
                     <Text style={styles.writeButtonText}>로그아웃</Text>
-                </TouchableOpacity>*/}
+                </TouchableOpacity>
                 <TouchableOpacity
                     onPress={onPressWrite}
                     style={styles.writeButtonWrapper}

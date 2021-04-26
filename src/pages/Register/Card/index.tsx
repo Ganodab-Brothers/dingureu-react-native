@@ -10,22 +10,27 @@ import AccountButton from '../../../components/AccountButton'
 import { ImagePickerResponse } from 'react-native-image-picker'
 import Header from '../../../components/Header'
 import useImageFormdata from '../../../hook/useImageFormdata'
+import { fileUpload } from '../../../api/files'
+import { userRegister } from '../../../api/users'
+import { useRecoilValue } from 'recoil'
+import { registerDataAtom } from '../../../store'
 
 const Card = () => {
 
     const navigation = useNavigation()
 
-    const { formData, setImageData } = useImageFormdata()
+    const registerData = useRecoilValue(registerDataAtom)
+
+    const { fileData, formData, setImageData } = useImageFormdata()
 
     const onPressShoot = () => {
 
         const onSuccess = (res: ImagePickerResponse) => {
-            console.log(res)
             setImageData(res)
         }
 
         const onFailure = (res: ImagePickerResponse) => {
-            console.log(res)
+            console.log(res.errorMessage)
         }
 
         ImagePicker({
@@ -38,7 +43,31 @@ const Card = () => {
     }
 
     const onPressRegister = () => {
-        
+        fileUpload({
+            fileName: fileData.name,
+            data: formData!,
+            onFailure: (err) => {
+                console.log(err)
+            },
+            onSuccess: (res) => {
+                console.log(res)
+                /*
+                userRegister({
+                    data: {
+                        name: registerData.name,
+                        gender: registerData.gender,
+                        password: registerData.password,
+                        nickname: registerData.nickname,
+                        username: registerData.username,
+                        school_code: registerData.schoolCode,
+                        school_name: registerData.schoolName,
+                        birthday: registerData.birthday,
+                        location: registerData.schoolLocation,
+                        school_id_card_url: res.data
+                    }
+                })*/
+            }
+        })
     }
 
     return (
@@ -51,7 +80,7 @@ const Card = () => {
             <View style={styles.cardImageWrapper}>
                 <Image
                     style={styles.cardImage}
-                    source={formData.uri ? { uri: formData.uri } : { uri: formData.uri }}
+                    source={fileData.uri ? { uri: fileData.uri } : { uri: fileData.uri }}
                 />
             </View>
             <View style={styles.buttonWrapper}>
@@ -63,7 +92,7 @@ const Card = () => {
                 <AccountButton
                     text="회원가입"
                     onPress={onPressRegister}
-                    isActive={formData.uri ? true : false}
+                    isActive={fileData.uri ? true : false}
                 />
             </View>
         </View>

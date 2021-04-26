@@ -1,4 +1,4 @@
-import { ImagePickerResponse, launchCamera, CameraOptions } from "react-native-image-picker"
+import { ImagePickerResponse, launchCamera, CameraOptions, launchImageLibrary } from "react-native-image-picker"
 
 const ImagePicker = ({
     options,
@@ -9,7 +9,7 @@ const ImagePicker = ({
     onSuccess: (res: ImagePickerResponse) => void,
     onFailure: (res: ImagePickerResponse) => void
 }) => {
-    launchCamera(options, (res) => {
+    launchImageLibrary(options, (res) => {
         if(res.errorMessage){
             onFailure(res)
         } else {

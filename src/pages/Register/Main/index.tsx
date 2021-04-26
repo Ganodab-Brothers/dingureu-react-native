@@ -12,13 +12,13 @@ import useInputs from '../../../hook/useInputs'
 import { UserGender } from '../../../types/users'
 import { useNavigation } from '@react-navigation/native'
 import { useRecoilState } from 'recoil'
-import { RegisterAtom } from '../../../store'
+import { registerDataAtom } from '../../../store'
 
 const Register = () => {
 
     const navigation = useNavigation()
 
-    const [ registerAtom, setRegisterAtom ] = useRecoilState(RegisterAtom)
+    const [ registerData, setRegisterData ] = useRecoilState(registerDataAtom)
 
     const [ { birthday, gender, name, username, nickname, password }, onChange ] = useInputs({
         birthday: "",
@@ -30,8 +30,8 @@ const Register = () => {
     })
 
     const onPressNext = () => {
-        setRegisterAtom({
-            ...registerAtom,
+        setRegisterData({
+            ...registerData,
             birthday: birthday,
             gender: gender,
             name: name,
@@ -42,6 +42,21 @@ const Register = () => {
         navigation.navigate("RegisterSearchSchool")
     }
 
+    const onBlurBirthday = () => {
+        let replacedBirthday = birthday.replace(/\s/gi, "");
+        let formattedBirthday
+        try{
+            if(replacedBirthday.length == 8) {
+                formattedBirthday = replacedBirthday.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+            }
+            onChange("birthday", formattedBirthday)
+        } catch(e) {
+            formattedBirthday = replacedBirthday;
+            onChange("birthday", formattedBirthday)
+        }
+        
+    }
+
     return(
         <View style={styles.container}>
             <Text style={{...globalStyle.logo, ...styles.logo}}>딩굴</Text>
@@ -49,7 +64,9 @@ const Register = () => {
                 value={birthday}
                 onChange={onChange}
                 name="birthday"
-                placeholder="생년월일"
+                placeholder="생년월일 (ex: 20030212)"
+                maxLength={10}
+                onBlur={onBlurBirthday}
             />
             <AccountInput
                 value={name}

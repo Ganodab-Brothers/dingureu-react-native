@@ -26,20 +26,29 @@ const Login = () => {
 
     const onPressLogin = () => {
         userToken({
-            username: username, 
-            password: password
+            data: {
+                username: username, 
+                password: password
+            }
         })
         .then(res => {
-            setItemToAsync("token", res.data["token"])
-            .then(token => {
-                navigation.reset({
-                    index: 0,
-                    routes: [{name: "Timeline"}]
+            if(res.data["access"]){
+                setItemToAsync("access", res.data["access"])
+                .then(access => {
+                    setItemToAsync("refresh", res.data["refresh"])
+                    .then(refresh => {
+                        navigation.reset({
+                            index: 0,
+                            routes: [{name: "Timeline"}]
+                        })
+                    })
                 })
-            })
+            } else {
+                Alert.alert("다시 시도해 주세요")
+            }
         })
         .catch(err => {
-            Alert.alert(err.code!)
+            Alert.alert("다시 시도해 주세요")
         })
     }
 
