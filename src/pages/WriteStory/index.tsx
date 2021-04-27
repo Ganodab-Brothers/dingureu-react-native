@@ -43,7 +43,10 @@ const WriteStory = () => {
                 }
             })
             .then(res => {
-                console.log(res.data)
+                rbSheetRef.current!.close()
+                navigation.navigate("ArticleLocalDetail", {
+                    localArticleId: res.data.id
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -57,7 +60,10 @@ const WriteStory = () => {
                 }
             })
             .then(res => {
-                console.log(res.data)
+                rbSheetRef.current!.close()
+                navigation.navigate("ArticleSchoolDetail", {
+                    schoolArticleId: res.data.id
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -88,12 +94,31 @@ const WriteStory = () => {
             </View>
             <View style={styles.write}>
                 <Text style={styles.writeLabel}>이야기</Text>
+                <TextInput
+                    style={styles.titleInput}
+                    placeholder="여기를 눌러 내용을 입력해주세요."
+                    value={content}
+                    onChangeText={(text) => onChange("content", text)}
+                    placeholderTextColor="#929292"
+                    multiline
+                />
             </View>
             <RBSheet
                 ref={rbSheetRef}
                 closeOnDragDown={true}
                 closeOnPressMask={true}
-                height={200}
+                height={50 + 100}
+                customStyles={{
+                    wrapper: {
+                        alignItems: "center"
+                    },
+                    container: {
+                        width: wp("95%"),
+                        borderRadius: 20,
+                        marginBottom: 20,
+                        paddingVertical: 10
+                    }
+                }}
             >
                 <View style={styles.sheetWrapper}>
                     <TouchableOpacity
@@ -102,6 +127,7 @@ const WriteStory = () => {
                     >
                         <Text style={styles.sheetTouchableContent}>용산구</Text> 
                     </TouchableOpacity>
+                    
                     <TouchableOpacity
                         style={styles.sheetTouchableContentWrapper}
                         onPress={() => onPressWriteStory(false)}
@@ -146,29 +172,21 @@ const styles = StyleSheet.create({
         height: "100%"
     },
     sheetTouchableContentWrapper: {
-        height: "40%"
+        height: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
     },
     sheetTouchableContent: {
         width: "100%",
-        color: "#000000",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        fontSize: 22,
+        color: "#555555",
+        fontSize: 18,
         textAlign: "left",
         paddingLeft: 30,
-        paddingTop: 15,
     },
-    sheetTouchableContentActive: {
+    actionSheetDivider: {
         width: "100%",
-        color: "#ffffff",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        fontSize: 22,
-        textAlign: "left",
-        marginLeft: 30,
-        paddingTop: 15,
-        backgroundColor: baseColor
+        backgroundColor: "#BABABA",
+        height: 1
     }
 })
