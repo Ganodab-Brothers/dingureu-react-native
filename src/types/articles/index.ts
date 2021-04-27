@@ -1,9 +1,11 @@
 interface ArticleLocal {
     id?: number
     writer?: string
-    location?: string
+    location?: string   
+    school?: string
     title: string
     content: string
+    createdAt: string
 }
 
 interface CreateArticleLocal {
@@ -19,9 +21,10 @@ interface UpdateArticleLocal {
 interface ArticleSchool {
     id?: number
     writer?: string
-    location?: string
+    school?: string
     title: string
     content: string
+    createdAt: string
 }
 
 interface CreateArticleSchool {

@@ -14,24 +14,24 @@ interface UserRegister {
     nickname: string
     password: string
     username: string
-    school_code: string
-    school_name: string
+    schoolCode: string
+    schoolName: string
     birthday: string
-    student_id?: string
-    phone_number?: string
+    studentId?: string
+    phoneNumber?: string
     location: string
-    school_id_card_url: string
+    schoolIdCardUrl: string
 }
 
 interface User {
     username: string
     nickname: string
-    phone_number?: string
+    phoneNumber?: string
     gender?: UserGender
     birthday?: string
-    student_id?: string
-    school_code: string
-    school_name: string
+    studentId?: string
+    schoolCode: string
+    schoolName: string
     school?: string
 }
 

@@ -21,11 +21,11 @@ export const userInfoAtom = atom({
     default: {
         username: "",
         nickname: "",
-        school_code: "",
-        school_name: "",
+        schoolCode: "",
+        schoolName: "",
         school: "",
-        student_id: "",
-        phone_number: "",
+        studentId: "",
+        phoneNumber: "",
         gender: UserGender.MALE,
         birthday: ""
     } as User

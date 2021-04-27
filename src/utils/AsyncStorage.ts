@@ -8,7 +8,12 @@ const getItemFromAsync = (name: string) => {
     return AsyncStorage.getItem(name)
 }
 
+const removeItemFromAsync = (name: string) => {
+    return AsyncStorage.removeItem(name)
+}
+
 export {
     setItemToAsync,
-    getItemFromAsync
+    getItemFromAsync,
+    removeItemFromAsync
 }

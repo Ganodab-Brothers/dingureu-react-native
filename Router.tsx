@@ -45,6 +45,14 @@ const Router = () => {
                     name="Write"
                     component={Routes.WriteStory}
                 />
+                <Screen
+                    name="ArticleLocalDetail"
+                    component={Routes.ArticleDetail.Local}
+                />
+                <Screen
+                    name="ArticleSchoolDetail"
+                    component={Routes.ArticleDetail.School}
+                />
             </Navigator>
         </NavigationContainer>
     )

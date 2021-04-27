@@ -8,29 +8,29 @@ import {
 import { baseColor } from '../constants/style'
 
 interface Props {
-    toggleIndex: number,
-    setToggleIndex: Dispatch<number>
+    timelineIndex: number,
+    setTimelineIndex: Dispatch<number>
 }
 
 const TimelineHeader: React.FC<Props> = ({
-    toggleIndex,
-    setToggleIndex
+    timelineIndex,
+    setTimelineIndex
 }) => {
     return (
         <View style={styles.header}>
             <TouchableOpacity
-                onPress={() => setToggleIndex(0)}
-                style={toggleIndex===0 ? {...styles.headerTextWrapper, ...styles.headerTextWrapperActive} : styles.headerTextWrapper}
+                onPress={() => setTimelineIndex(0)}
+                style={timelineIndex===0 ? {...styles.headerTextWrapper, ...styles.headerTextWrapperActive} : styles.headerTextWrapper}
             >
-                <Text style={toggleIndex===0 ? {...styles.headerText, ...styles.headerTextActive} : styles.headerText}>
+                <Text style={timelineIndex===0 ? {...styles.headerText, ...styles.headerTextActive} : styles.headerText}>
                     용산구 딩굴
                 </Text>
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => setToggleIndex(1)}
-                style={toggleIndex===1 ? {...styles.headerTextWrapper, ...styles.headerTextWrapperActive} : styles.headerTextWrapper}
+                onPress={() => setTimelineIndex(1)}
+                style={timelineIndex===1 ? {...styles.headerTextWrapper, ...styles.headerTextWrapperActive} : styles.headerTextWrapper}
             >
-                <Text style={toggleIndex===1 ? {...styles.headerText, ...styles.headerTextActive} : styles.headerText}>
+                <Text style={timelineIndex===1 ? {...styles.headerText, ...styles.headerTextActive} : styles.headerText}>
                     선린인터넷고등학교
                 </Text>
             </TouchableOpacity>

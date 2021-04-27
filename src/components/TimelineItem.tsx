@@ -6,40 +6,26 @@ import {
 } from 'react-native'
 import { baseColor } from '../constants/style'
 import { widthPercentageToDP } from 'react-native-responsive-screen'
+import { ArticleLocal, ArticleSchool } from '../types/articles'
+import { TimeForToday } from '../utils/TimeForToday'
 
 interface Props {
-    item: {
-        title: string
-        author: string
-        schoolName: string,
-        content: string,
-        commentCount: number,
-        uploaded: number
-    }
+    item: ArticleLocal | ArticleSchool
 }
 
-const TimelineItem: React.FC<Props> = ({
-    item: {
-        title,
-        author,
-        schoolName,
-        content,
-        commentCount,
-        uploaded
-    }
-}) => {
+const TimelineItem: React.FC<Props> = ({item}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.schoolName}>{schoolName}</Text>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.content}>{content}</Text>
+            <Text style={styles.schoolName}>{item.school}</Text>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.content}>{item.content}</Text>
             <View style={styles.infoWrapper}>
-                <Text style={styles.author}>{author}</Text>
-                <Text style={styles.uploaded}>{uploaded}분전</Text>
+                <Text style={styles.author}>{item.writer}</Text>
+                <Text style={styles.uploaded}>{TimeForToday(item.createdAt)}분전</Text>
             </View>
             <View style={styles.utilWrapper}>
                 <View style={styles.util}>
-                    <Text style={styles.comment}>댓글 {commentCount}</Text>
+                    <Text style={styles.comment}>댓글 {/*item.commentCount*/}</Text>
                 </View>
             </View>
             <View style={styles.divider}/>

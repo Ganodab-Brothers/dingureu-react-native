@@ -4,7 +4,8 @@ import {
     StyleSheet,
     Text,
     TextInput,
-    Alert
+    Alert,
+    TouchableOpacity
 } from 'react-native'
 import Header from '../../components/Header'
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen'
@@ -13,6 +14,8 @@ import { baseColor } from '../../constants/style'
 import { useNavigation } from '@react-navigation/native'
 import RBSheet from 'react-native-raw-bottom-sheet'
 import { createArticleLocal, createArticleschool } from '../../api/articles'
+import { useRecoilValue } from 'recoil'
+import { userInfoAtom } from '../../store'
 
 const WriteStory = () => {
 
@@ -22,6 +25,8 @@ const WriteStory = () => {
         title: "",
         content: ""
     })
+
+    const userInfo = useRecoilValue(userInfoAtom)
 
     const rbSheetRef = useRef<RBSheet>(null)
 
@@ -38,7 +43,10 @@ const WriteStory = () => {
                 }
             })
             .then(res => {
-                console.log(res.data)
+                rbSheetRef.current!.close()
+                navigation.navigate("ArticleLocalDetail", {
+                    localArticleId: res.data.id
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -52,7 +60,10 @@ const WriteStory = () => {
                 }
             })
             .then(res => {
-                console.log(res.data)
+                rbSheetRef.current!.close()
+                navigation.navigate("ArticleSchoolDetail", {
+                    schoolArticleId: res.data.id
+                })
             })
             .catch(err => {
                 console.log(err)
@@ -83,13 +94,47 @@ const WriteStory = () => {
             </View>
             <View style={styles.write}>
                 <Text style={styles.writeLabel}>이야기</Text>
+                <TextInput
+                    style={styles.titleInput}
+                    placeholder="여기를 눌러 내용을 입력해주세요."
+                    value={content}
+                    onChangeText={(text) => onChange("content", text)}
+                    placeholderTextColor="#929292"
+                    multiline
+                />
             </View>
             <RBSheet
                 ref={rbSheetRef}
                 closeOnDragDown={true}
                 closeOnPressMask={true}
+                height={50 + 100}
+                customStyles={{
+                    wrapper: {
+                        alignItems: "center"
+                    },
+                    container: {
+                        width: wp("95%"),
+                        borderRadius: 20,
+                        marginBottom: 20,
+                        paddingVertical: 10
+                    }
+                }}
             >
-                <Text style={{fontSize: 123}}>etxt</Text>
+                <View style={styles.sheetWrapper}>
+                    <TouchableOpacity
+                        style={styles.sheetTouchableContentWrapper}
+                        onPress={() => onPressWriteStory(true)}
+                    >
+                        <Text style={styles.sheetTouchableContent}>용산구</Text> 
+                    </TouchableOpacity>
+                    
+                    <TouchableOpacity
+                        style={styles.sheetTouchableContentWrapper}
+                        onPress={() => onPressWriteStory(false)}
+                    >
+                        <Text style={styles.sheetTouchableContent}>선린인터넷고등학교</Text>
+                    </TouchableOpacity>
+                </View>
             </RBSheet>
         </View>
     )
@@ -118,5 +163,30 @@ const styles = StyleSheet.create({
     titleInput: {
         width: "100%",
         fontSize: 18
+    },
+    sheetWrapper: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        fontSize: 20,
+        height: "100%"
+    },
+    sheetTouchableContentWrapper: {
+        height: 50,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    sheetTouchableContent: {
+        width: "100%",
+        color: "#555555",
+        fontSize: 18,
+        textAlign: "left",
+        paddingLeft: 30,
+    },
+    actionSheetDivider: {
+        width: "100%",
+        backgroundColor: "#BABABA",
+        height: 1
     }
 })
