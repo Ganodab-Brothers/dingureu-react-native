@@ -37,11 +37,25 @@ interface UpdateArticleSchool {
     content?: string
 }
 
+type LocalArticleDetailParamList = {
+    Detail: {
+        localArticleId: number
+    }
+}
+
+type SchoolArticleDetailParamList = {
+    Detail: {
+        schoolArticleId: number
+    }
+}
+
 export type {
     ArticleLocal,
     CreateArticleLocal,
     UpdateArticleLocal,
     ArticleSchool,
     CreateArticleSchool,
-    UpdateArticleSchool
+    UpdateArticleSchool,
+    LocalArticleDetailParamList,
+    SchoolArticleDetailParamList
 }

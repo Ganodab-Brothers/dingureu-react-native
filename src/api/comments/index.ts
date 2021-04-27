@@ -6,33 +6,33 @@ export const createCommentLocal = ({
 } : {
     data: CreateCommentLocal
 }) => {
-    return api.post('/comments/local/', data)
+    return api.post('/comments/local', data)
 }
 
 export const updateCommentLocal = ({
     id, data
 } : {
-    id: string
+    id: string | number
     data: UpdateCommentLocal
 }) => {
-    return api.put(`/comments/local/${id}/`, data)
+    return api.put(`/comments/local/${id}`, data)
 }
 
 export const partialUpdateCommentLocal = ({
     id, data
 } : {
-    id: string
+    id: string | number
     data: UpdateCommentLocal
 }) => {
-    return api.patch(`/comments/local/${id}/`, data)
+    return api.patch(`/comments/local/${id}`, data)
 }
 
 export const deleteCommentLocal = ({
     id
 } : {
-    id: string
+    id: string | number
 }) => {
-    return api.delete(`/comments/local/${id}/`)
+    return api.delete(`/comments/local/${id}`)
 }
 
 export const createCommentSchool = ({
@@ -40,31 +40,31 @@ export const createCommentSchool = ({
 } : {
     data: CreateCommentSchool
 }) => {
-    return api.post('/comments/school/', data)
+    return api.post('/comments/school', data)
 }
 
 export const updateCommentSchool = ({
     id, data
 } : {
-    id: string
+    id: string | number
     data: UpdateCommentSchool
 }) => {
-    return api.put(`/comments/school/${id}/`, data)
+    return api.put(`/comments/school/${id}`, data)
 }
 
 export const partialUpdateCommentSchool = ({
     id, data
 } : {
-    id: string
+    id: string | number
     data: UpdateCommentSchool
 }) => {
-    return api.patch(`/comments/school/${id}/`, data)
+    return api.patch(`/comments/school/${id}`, data)
 }
 
 export const deleteCommentSchool = ({
     id
 } : {
-    id: string
+    id: string | number
 }) => {
-    return api.delete(`/comments/school/${id}/`)
+    return api.delete(`/comments/school/${id}`)
 }

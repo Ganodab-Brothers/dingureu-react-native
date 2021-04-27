@@ -35,7 +35,7 @@ api.interceptors.response.use(
         const refreshToken = await getRefreshToken()
         if(error.response.status===401 && !originalRequest._retry){
             originalRequest._retry = true
-            return api.post('/token/refresh/', {
+            return api.post('/token/refresh', {
                 refresh: refreshToken
             })
             .then(res => {

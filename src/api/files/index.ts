@@ -12,11 +12,10 @@ export const fileUpload = ({
     onSuccess: (res: AxiosResponse) => void, 
     onFailure: (err: AxiosError) => void
 }) => {
-    api.put("/files/upload/", {
+    api.put("/files/upload", {
         object_name: fileName
     })
     .then(res => {
-        console.log(res)
         for (const [key, value] of Object.entries(res.data.fields)){
             data.append(key, value)
         }

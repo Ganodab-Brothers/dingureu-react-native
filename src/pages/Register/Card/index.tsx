@@ -2,7 +2,8 @@ import React from 'react'
 import {
     View,
     StyleSheet,
-    Image
+    Image,
+    Alert
 } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import ImagePicker from '../../../utils/ImagePicker'
@@ -51,7 +52,6 @@ const Card = () => {
             },
             onSuccess: (res) => {
                 console.log(res)
-                /*
                 userRegister({
                     data: {
                         name: registerData.name,
@@ -59,13 +59,19 @@ const Card = () => {
                         password: registerData.password,
                         nickname: registerData.nickname,
                         username: registerData.username,
-                        school_code: registerData.schoolCode,
-                        school_name: registerData.schoolName,
+                        schoolCode: registerData.schoolCode,
+                        schoolName: registerData.schoolName,
                         birthday: registerData.birthday,
                         location: registerData.schoolLocation,
-                        school_id_card_url: res.data
+                        schoolIdCardUrl: res.data
                     }
-                })*/
+                })
+                .then(res => {
+                    console.log("res", res.data)
+                })
+                .catch(err => {
+                    console.log("err", err)
+                })
             }
         })
     }

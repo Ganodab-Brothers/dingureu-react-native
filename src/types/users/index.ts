@@ -1,6 +1,6 @@
 enum UserGender {
-    MALE = "m",
-    FEMALE = "f"
+    MALE = "M",
+    FEMALE = "F"
 }
 
 interface UserToken {
@@ -29,10 +29,12 @@ interface User {
     phoneNumber?: string
     gender?: UserGender
     birthday?: string
-    studentId?: string
-    schoolCode: string
-    schoolName: string
-    school?: string
+    school?: {
+        id: number
+        schoolCode: string
+        schoolName: string
+        location: string
+    }
 }
 
 export type {

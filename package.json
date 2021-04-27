@@ -52,6 +52,7 @@
     "react-native-swiper": "^1.6.0",
     "react-native-tab-view": "^2.16.0",
     "recoil": "^0.2.0",
+    "snakecase-keys": "^4.0.1",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
