@@ -21,9 +21,12 @@ export const userInfoAtom = atom({
     default: {
         username: "",
         nickname: "",
-        schoolCode: "",
-        schoolName: "",
-        school: "",
+        school: {
+            id: 0,
+            schoolCode: "",
+            schoolName: "",
+            location: ""
+        },
         studentId: "",
         phoneNumber: "",
         gender: UserGender.MALE,

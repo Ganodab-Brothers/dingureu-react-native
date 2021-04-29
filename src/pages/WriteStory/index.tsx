@@ -16,6 +16,7 @@ import RBSheet from 'react-native-raw-bottom-sheet'
 import { createArticleLocal, createArticleschool } from '../../api/articles'
 import { useRecoilValue } from 'recoil'
 import { userInfoAtom } from '../../store'
+import withLoading from '../../hoc/withLoading'
 
 const WriteStory = () => {
 
@@ -140,7 +141,7 @@ const WriteStory = () => {
     )
 }
 
-export default WriteStory
+export default withLoading(WriteStory)
 
 const styles = StyleSheet.create({
     container: {

@@ -14,9 +14,11 @@ function useImageFormdata(){
     useEffect(() => {
         if(imageData){
             let formData = new FormData()
-            formData.append("name", imageData.fileName)
-            formData.append("type", imageData.type)
-            formData.append("uri", imageData.uri)
+            formData.append("file", {
+                name: imageData.fileName,
+                type: imageData.type,
+                uri: imageData.uri
+            })
             setFormData(formData)
             setFileData({
                 name: imageData.fileName!,

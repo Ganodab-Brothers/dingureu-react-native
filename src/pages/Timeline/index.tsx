@@ -93,6 +93,7 @@ const Timeline = () => {
         userMe()
         .then(res => {
             setUserInfo(camelcaseKeys(res.data))
+            console.log(res.data)
         })
         .catch(err => {
             console.log(err)
@@ -100,7 +101,7 @@ const Timeline = () => {
 
         articleLocal()
         .then(res => {
-            console.log(res.data)
+            console.log(res)
         })
         .catch(err => {
             console.log(err)
